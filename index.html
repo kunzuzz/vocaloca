@@ -14,15 +14,31 @@
 	<div id="content">
 		
 	</div>
+	<hr/>
+	<div id="log">
+	
+	</div>
 </body>
 
 <script>
+	log("begin", (new Date()).getTime());
 
 	$(document).ready(function(){
+		log("document.ready", (new Date()).getTime());
 		setActionMode();
+		log("setActionMode", (new Date()).getTime());
 		initEvents();
+		log("initEvents", (new Date()).getTime());
 		writeAll();
+		log("writeAll", (new Date()).getTime());
 	});
+	
+	function log(text, time)
+	{
+		var timeSpan = time - window.lastLogTime;
+		$("#log").append("<div>" + text + " - <span style='color:green;'>" + timeSpan + "</span></div>");
+		window.lastLogTime = time;
+	}
 
 	function initEvents()
 	{
