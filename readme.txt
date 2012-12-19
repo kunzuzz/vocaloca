@@ -1,17 +1,8 @@
-Javascript Performance
+Planned Features:
 
-PC/Chrome
-
-begin - NaN
-document.ready - 5
-setActionMode - 5
-initEvents - 5
-writeAll - 11
-
-Symbian_S60/Opera_Mobile
-
-begin - NaN
-document.ready - 113
-setActionMode - 18
-initEvents - 10
-writeAll - 132
+1. Vocabulary editor
+2. Goals setter
+	1. e.g. Learn 100 000 in a year
+	2. correlation with Levels 
+3. Games, Puzzles, Crosswords
+4. Friendly UI

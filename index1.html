@@ -23,10 +23,13 @@
 </body>
 
     <script type="text/javascript">
-
+        
         log("begin", (new Date()).getTime());
 
-        $(document).ready(function(){
+        $(document).ready(function () {
+
+            document.getElementById("word1").focus();
+
             log("document.ready", (new Date()).getTime());
             setActionMode();
             log("setActionMode", (new Date()).getTime());
