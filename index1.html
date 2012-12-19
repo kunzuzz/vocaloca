@@ -1,6 +1,7 @@
 <html>
 <head>
-	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js"></script>
+	<!--<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js"></script>-->
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/zepto/0.6/zepto.min.js"></script>
 </head>
 
 <body>
@@ -41,9 +42,8 @@
 		window.lastLogTime = time;
 	}
 
-	function initEvents()
-	{
-		$("#actionBox #word1").keyup(function(e){
+	function initEvents() {
+        $("#actionBox #word1").bind("keyup", function(e){
 			var found = getLine(getWord1());
 			if (found)
 			{
