@@ -22,167 +22,164 @@
 	</div>
 </body>
 
-<script type="text/javascript">
-	log("begin", (new Date()).getTime());
+    <script type="text/javascript">
 
-	$(document).ready(function(){
-		log("document.ready", (new Date()).getTime());
-		setActionMode();
-		log("setActionMode", (new Date()).getTime());
-		initEvents();
-		log("initEvents", (new Date()).getTime());
-		writeAll();
-		log("writeAll", (new Date()).getTime());
-	});
-	
-	function log(text, time)
-	{
-		var timeSpan = time - window.lastLogTime;
-		$("#log").append("<div>" + text + " - <span style='color:green;'>" + timeSpan + "</span></div>");
-		window.lastLogTime = time;
-	}
+        log("begin", (new Date()).getTime());
 
-	function initEvents() {
-        $("#actionBox #word1").bind("keyup", function(e){
-			var found = getLine(getWord1());
-			if (found)
-			{
-				setActionMode("edit");
-				setWord2(found);
-			}
-			else
-			{
-				setActionMode("add");
-				setWord2("");
-			}
-		});
-	}
+        $(document).ready(function(){
+            log("document.ready", (new Date()).getTime());
+            setActionMode();
+            log("setActionMode", (new Date()).getTime());
+            initEvents();
+            log("initEvents", (new Date()).getTime());
+            writeAll();
+            log("writeAll", (new Date()).getTime());
+        });
 	
-	function setActionMode(mode)
-	{
-		switch(mode)
-		{
-			case "add":
-				$("#addBtn").show();
-				$("#editBtn").hide();
-				$("#deleteBtn").hide();
-				break;
+        function log(text, time)
+        {
+            var timeSpan = time - window.lastLogTime;
+            $("#log").append("<div>" + text + " - <span style='color:green;'>" + timeSpan + "</span></div>");
+            window.lastLogTime = time;
+        }
+
+        function initEvents() {
+            $("#actionBox #word1").bind("keyup", function(e){
+                var found = getLine(getWord1());
+                if (found)
+                {
+                    setActionMode("edit");
+                    setWord2(found);
+                }
+                else
+                {
+                    setActionMode("add");
+                    setWord2("");
+                }
+            });
+        }
+	
+        function setActionMode(mode)
+        {
+            switch(mode)
+            {
+            case "add":
+                $("#addBtn").show();
+                $("#editBtn").hide();
+                $("#deleteBtn").hide();
+                break;
 			
-			case "edit":
-				$("#addBtn").hide();
-				$("#editBtn").show();
-				$("#deleteBtn").show();
-				break;
+            case "edit":
+                $("#addBtn").hide();
+                $("#editBtn").show();
+                $("#deleteBtn").show();
+                break;
 
             default:
                 $("#addBtn").show();
                 $("#editBtn").hide();
                 $("#deleteBtn").hide();
                 break;
-		}
-	}
+            }
+        }
 	
-	function getWord1()
-	{
-		return $("#actionBox #word1").val();
-	}
+        function getWord1()
+        {
+            return $("#actionBox #word1").val();
+        }
 	
-	function getWord2()
-	{
-		return $("#actionBox #word2").val();
-	}
+        function getWord2()
+        {
+            return $("#actionBox #word2").val();
+        }
 	
-	function setWord2(w2)
-	{
-		$("#actionBox #word2").val(w2);
-	}
+        function setWord2(w2)
+        {
+            $("#actionBox #word2").val(w2);
+        }
 	
-	function writeAll()
-	{
-		var list = getAll();
+        function writeAll()
+        {
+            var list = getAll();
 		
-		for (i in list)
-		{
-			writeLine(i, list[i]);
-		}
-	}
+            for (i in list)
+            {
+                writeLine(i, list[i]);
+            }
+        }
+
+        function getAll()
+        {
+            var storage = window.localStorage;
+            var i;
+            var key;
+            var value;
+            var list = {};
+            for (i = 0; i < storage.length; i++)
+            {
+                key = storage.key(i);
+                value = getLine(key);
+                list[key] = value;
+            }
 		
-	function getAll()
-	{
-		var storage = window.localStorage;
-		var i;
-		var key;
-		var value;
-		var list = {};
-		for (i = 0; i < storage.length; i++)
-		{
-			key = storage.key(i);
-			value = getLine(key);
-			list[key] = value;
-		}
+            return list;
+        }
+	
+        function getLine(key)
+        {
+            var storage = window.localStorage;
 		
-		return list;
-	}
-	
-	function getLine(key)
-	{
-		var storage = window.localStorage;
+            return storage.getItem(key);
+        }
+
+        function addWord()
+        {
+            var word1 = getWord1();
+            var word2 = getWord2();
 		
-		return storage.getItem(key);
-	}
-
-	function addWord()
-	{
-		var word1 = getWord1();
-		var word2 = getWord2();
+            writeLine(word1, word2);
+            saveLine(word1, word2);
+        }
+	
+        function writeLine(w1, w2)
+        {
+            $("#content").append(formatLine(w1, w2));
+        }	
+	
+        function editWord()
+        {
+            var word1 = getWord1();
+            var word2 = getWord2();
 		
-		writeLine(word1, word2);
-		saveLine(word1, word2);
-	}
+            editLine(word1, word2);
+            saveLine(word1, word2);
+        }
+
+        function deleteWord() {
+            var word1 = getWord1();
+            deleteLine(word1);
+
+            window.localStorage.removeItem(word1);
+        }
+
+        function deleteLine(w1) {
+            $("#content #" + w1).remove();
+        }
 	
-	function writeLine(w1, w2)
-	{
-		$("#content").append(formatLine(w1, w2));
-	}	
+        function editLine(w1, w2)
+        {
+            $("#content #" + w1).replaceWith(formatLine(w1, w2));
+        }
 	
-	function editWord()
-	{
-		var word1 = getWord1();
-		var word2 = getWord2();
-		
-		editLine(word1, word2);
-		saveLine(word1, word2);
-    }
-
-    
-
-    function deleteWord() {
-        var word1 = getWord1();
-        deleteLine(word1);
-
-        window.localStorage.removeItem(word1);
-    }
-
-    function deleteLine(w1) {
-        $("#content #" + w1).remove();
-    }
+        function formatLine(w1, w2)
+        {
+            return "<div id='" + w1 + "'><span>" + w1 + "</span> - <span style='color:green;'>" + w2 + "</span></div>";
+        }
 	
-	function editLine(w1, w2)
-	{
-		$("#content #" + w1).replaceWith(formatLine(w1, w2));
-	}
-	
-	function formatLine(w1, w2)
-	{
-		return "<div id='" + w1 + "'><span>" + w1 + "</span> - <span style='color:green;'>" + w2 + "</span></div>";
-	}
-	
-	function saveLine(w1, w2)
-	{
-		window.localStorage.setItem(w1, w2);
-	}
+        function saveLine(w1, w2)
+        {
+            window.localStorage.setItem(w1, w2);
+        }    
 
-    
-
-</script>
+    </script>
 </html>
