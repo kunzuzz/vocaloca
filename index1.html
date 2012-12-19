@@ -29,23 +29,28 @@
 </body>
 
     <script type="text/javascript">
+        var Configuration = {
+            enableLogging: false
+        };
         
         log("begin", (new Date()).getTime());
 
         $(document).ready(function () {
 
             log("document.ready", (new Date()).getTime());
+
             setActionMode();
-            log("setActionMode", (new Date()).getTime());
+            
             initEvents();
-            log("initEvents", (new Date()).getTime());
+            
             writeAll();
-            log("writeAll", (new Date()).getTime());
         });
 	
-        function log(text, time)
-        {
-            var timeSpan = time - window.lastLogTime;
+        function log(text, time) {
+            if (Configuration.enableLogging === false) return;
+
+            var timeSpan = time - window.lastLogTime || 0;
+
             $("#log").append("<div>" + text + " - <span style='color:green;'>" + timeSpan + "</span></div>");
             window.lastLogTime = time;
         }
@@ -64,29 +69,31 @@
                     setWord2("");
                 }
             });
+
+            log("initEvents", (new Date()).getTime());
         }
 	
         function setActionMode(mode)
         {
             switch(mode)
             {
-            case "add":
-                $("#addBtn").show();
-                $("#editBtn").hide();
-                $("#deleteBtn").hide();
-                break;
+                case "add":
+                    $("#addBtn").show();
+                    $("#editBtn").hide();
+                    $("#deleteBtn").hide();
+                    break;
 			
-            case "edit":
-                $("#addBtn").hide();
-                $("#editBtn").show();
-                $("#deleteBtn").show();
-                break;
+                case "edit":
+                    $("#addBtn").hide();
+                    $("#editBtn").show();
+                    $("#deleteBtn").show();
+                    break;
 
-            default:
-                $("#addBtn").show();
-                $("#editBtn").hide();
-                $("#deleteBtn").hide();
-                break;
+                default:
+                    $("#addBtn").show();
+                    $("#editBtn").hide();
+                    $("#deleteBtn").hide();
+                    break;
             }
         }
 	
@@ -113,6 +120,8 @@
             {
                 writeLine(i, list[i]);
             }
+
+            log("writeAll", (new Date()).getTime());
         }
 
         function getAll()
