@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<!--<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js"></script>-->
@@ -6,7 +7,7 @@
 
 <body>
 	<div id="actionBox">
-		<input id="word1" type="text" value=""/>
+		<input id="word1" type="text" value="" autofocus/>
 		<input id="word2" type="text" value=""/>
 		<input id="addBtn" type="button" value="add" onclick="addWord()"/>
 		<input id="editBtn" type="button" value="edit" onclick="editWord()"/>
@@ -28,7 +29,7 @@
 
         $(document).ready(function () {
 
-            document.getElementById("word1").focus();
+            //document.getElementById("word1").focus();
 
             log("document.ready", (new Date()).getTime());
             setActionMode();
