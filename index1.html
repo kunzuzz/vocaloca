@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>vocaloca</title>
 	<!--<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js"></script>-->
 	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/zepto/0.6/zepto.min.js"></script>
+
+    <style type="text/css">
+        .textfield {width: 50px;}
+    </style>
 </head>
 
 <body>
 	<div id="actionBox">
-		<input id="word1" type="text" value="" autofocus/>
-		<input id="word2" type="text" value=""/>
+		<input id="word1" type="text" class="textfield" autofocus="autofocus"/>
+		<input id="word2" type="text" class="textfield"/>
 		<input id="addBtn" type="button" value="add" onclick="addWord()"/>
 		<input id="editBtn" type="button" value="edit" onclick="editWord()"/>
         <input id="deleteBtn" type="button" value="del" onclick="deleteWord()"/>
@@ -28,8 +33,6 @@
         log("begin", (new Date()).getTime());
 
         $(document).ready(function () {
-
-            //document.getElementById("word1").focus();
 
             log("document.ready", (new Date()).getTime());
             setActionMode();
