@@ -5,7 +5,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		index.html = index.html
 		index1.html = index1.html
+		node-vsdoc.js = node-vsdoc.js
 		readme.txt = readme.txt
+		server.js = server.js
+		start.bat = start.bat
 	EndProjectSection
 EndProject
 Global
