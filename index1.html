@@ -2,8 +2,10 @@
 <html>
 <head>
     <title>vocaloca</title>
-	<!--<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js"></script>-->
-	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/zepto/0.6/zepto.min.js"></script>
+    <!--<script type="text/javascript" src="http://zeptojs.com/zepto.js"></script>-->
+
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/zepto/0.6/zepto.min.js"></script>
+    <script type="text/javascript" src="./client.js"></script>
 
     <style type="text/css">
         .textfield {width: 50px;}
@@ -17,6 +19,7 @@
 		<input id="addBtn" type="button" value="add" onclick="addWord()"/>
 		<input id="editBtn" type="button" value="edit" onclick="editWord()"/>
         <input id="deleteBtn" type="button" value="del" onclick="deleteWord()"/>
+        <input id="sendBtn" type="button" value="sendToServer" onclick="sendToServer()"/>
 	</div>
 
 	<div id="content">
@@ -152,9 +155,12 @@
         {
             var word1 = getWord1();
             var word2 = getWord2();
-		
+
+            var object = {};
+            object[word1] = word2;
+
             writeLine(word1, word2);
-            saveLine(word1, word2);
+            saveLine(word1, JSON.stringify(object));
         }
 	
         function writeLine(w1, w2)
