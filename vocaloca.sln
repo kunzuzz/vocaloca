@@ -3,8 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{49B48362-EBE8-4E99-BBE9-6012E31373CB}"
 	ProjectSection(SolutionItems) = preProject
+		client.js = client.js
 		index.html = index.html
 		index1.html = index1.html
+		mongodb.js = mongodb.js
 		node-vsdoc.js = node-vsdoc.js
 		readme.txt = readme.txt
 		server.js = server.js

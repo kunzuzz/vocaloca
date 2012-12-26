@@ -1,5 +1,5 @@
 function sendToServer() {
-    $.post("http://127.0.0.1:8124/", JSON.stringify(prepareData()), function () {
+    $.post("http://86.57.159.55:8124/", JSON.stringify(prepareData()), function () {
         alert("Words sent!");
     });
 }
