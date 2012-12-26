@@ -6,3 +6,9 @@ Planned Features:
 	2. correlation with Levels 
 3. Games, Puzzles, Crosswords
 4. Friendly UI
+
+Installing Guide:
+
+1. Install Node.js - http://nodejs.org/
+2. Install MongoJS - http://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
+3. Install MongoDB - http://www.mongodb.org/downloads
