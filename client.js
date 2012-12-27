@@ -6,15 +6,15 @@ function sendToServer() {
 
     $.ajax({
         type: 'POST',
-        url: 'http://86.57.159.55:8124/',
+        url: 'http://127.0.0.1:8124/',
         data: JSON.stringify(prepareData()),
-        dataType: 'json',
+        dataType: 'text',
         timeout: 300,
         success: function (data) {
             alert('Sent success!');
         },
         error: function (xhr, errorType, error) {
-            alert('Sent error!' + errorType + error);
+            alert('Sent error!');
         }
     })
 }
